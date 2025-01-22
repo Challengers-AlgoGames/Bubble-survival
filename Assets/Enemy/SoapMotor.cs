@@ -12,25 +12,10 @@ public class SoapMotor : MonoBehaviour
 
     public void DoCircleBubbleFormationMove() {
         // StartCoroutine(PerformCircleBubbleFormationMove());
-        int bubbles = 8;
+        int bubbles = 12;
         float radius = 1f;
         CircleFormation(bubbles, radius);
     }
-
-    // IEnumerator PerformCircleBubbleFormationMove() {   
-    //     int bubbles = 8;
-    //     float radius = 1f;
-    //     while (true)
-    //     {
-    //         GameObject[] generatedBubbles = CircleFormation(bubbles, radius);
-    //         yield return new WaitForSeconds(0.5f);
-    //         foreach (var bubble in generatedBubbles)
-    //         {
-    //             Destroy(bubble);
-    //         }
-    //         radius++;
-    //     }
-    // }
 
     GameObject[] CircleFormation(int numberOfObjects, float radius) {
         GameObject[] instantiatedObject = new GameObject[numberOfObjects];
@@ -38,6 +23,7 @@ public class SoapMotor : MonoBehaviour
         for (int i = 0; i < numberOfObjects; i++)
         {
             float angle = i * Mathf.PI * 2 / numberOfObjects;
+            Debug.Log("angle: "+angle*Mathf.Rad2Deg);
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
             Vector3 position = transform.position + new Vector3(x, y, 0);
