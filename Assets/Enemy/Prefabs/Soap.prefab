@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2978965931704333655}
   - component: {fileID: 7234398298339730973}
-  - component: {fileID: 5922872398427607692}
   - component: {fileID: 532840349617881990}
   - component: {fileID: 5774404499878993142}
   m_Layer: 0
@@ -90,42 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5922872398427607692
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23982996608888770}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 3
 --- !u!114 &532840349617881990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,14 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c5dda5130339fd597050aace2b21c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soapPatterns:
-  - patternType: 0
-    iteration: 3
-  - patternType: 1
-    iteration: 1
-  - patternType: 2
-    iteration: 1
-  - patternType: 3
-    iteration: 1
-  - patternType: 4
-    iteration: 1
+  target: {fileID: 0}
+  patternIntervalTime: 5
+  patternIntervalTimeModifier: 2
+  maxPatternIteration: 4

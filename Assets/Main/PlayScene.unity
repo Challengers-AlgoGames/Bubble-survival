@@ -309,6 +309,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5774404499878993142, guid: 55e111e645f87e2b6a425646ca58de07, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1616694041}
+    - target: {fileID: 5774404499878993142, guid: 55e111e645f87e2b6a425646ca58de07, type: 3}
       propertyPath: soapPatterns.Array.data[0].iteration
       value: 100
       objectReference: {fileID: 0}
@@ -458,6 +462,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c84e51fab40dff78663e90ed56d4eb, type: 3}
+--- !u!1 &1616694041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6452545082924276953, guid: 80c84e51fab40dff78663e90ed56d4eb, type: 3}
+  m_PrefabInstance: {fileID: 1099708883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
