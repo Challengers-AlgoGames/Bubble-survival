@@ -9,7 +9,7 @@ public class SoapMotor : MonoBehaviour
         bubblePrefab.GetComponent<CircleCollider2D>().enabled = false;
     }
 
-    public void DoCircleBubbleFormationMove() {
+    public void Breath() {
         int bubbles = 12;
         float radius = 1f;
         CircleFormation(bubbles, radius);
