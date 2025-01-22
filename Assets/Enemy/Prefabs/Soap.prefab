@@ -115,6 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  patternIntervalTime: 5
-  patternIntervalTimeModifier: 2
-  maxPatternIteration: 4
+  patternIntervalTime: 2
+  patternIntervalTimeModifier: 1

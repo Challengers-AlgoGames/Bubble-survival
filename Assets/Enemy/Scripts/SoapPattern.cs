@@ -5,28 +5,38 @@ using UnityEngine;
 public class SoapPattern : MonoBehaviour
 {
     public enum SoapPatternType {
-        BEATH, SPIN, SLIDE, JUMP
+        BREATH, SPIN, SLIDE, JUMP
+    }
+    public enum State {
+        PERFORMING, THINKING
     }
 
     private SoapMotor soapMotor;
     private SoapPatternType currentPattern;
-    private bool readyForAction = false;
+    private State action = State.THINKING;
 
     [SerializeField] private GameObject target;
     [SerializeField] private float patternIntervalTime = 5f;
     [SerializeField] private float patternIntervalTimeModifier = 2f;
 
+    private bool isPerforming = false;
+
     void Awake() {
         soapMotor = GetComponent<SoapMotor>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(readyForAction) {
-            StartCoroutine(DoPatternAction());
-        }
-        else {
-            MakeDecision();
+        switch(action) {
+            case State.THINKING:
+                MakeDecision();
+                action = State.PERFORMING;
+                break;
+            case State.PERFORMING:
+                if (!isPerforming) {
+                    StartCoroutine(DoPatternAction());
+                }
+                break;
         }
     }
 
@@ -34,7 +44,7 @@ public class SoapPattern : MonoBehaviour
         float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
         // BREATH pattern
         if(distanceToTarget <= 5f) {
-            currentPattern = SoapPatternType.BEATH;
+            currentPattern = SoapPatternType.BREATH;
         }
         // SPIN pattern
         else if(distanceToTarget <= 10f && distanceToTarget > 5f) {
@@ -48,38 +58,37 @@ public class SoapPattern : MonoBehaviour
         else if(distanceToTarget > 15f) {
             currentPattern = SoapPatternType.SLIDE;
         }
-        readyForAction = true;
     }
 
     void PerformPatternAction() {
         switch(currentPattern) {
-            case SoapPatternType.BEATH:
+            case SoapPatternType.BREATH:
                 soapMotor.Breath();
                 break;
             case SoapPatternType.SPIN:
-                Debug.Log("SPIN");
                 break;
             case SoapPatternType.SLIDE:
-                Debug.Log("SLIDE");
                 break;
             case SoapPatternType.JUMP:
-                Debug.Log("JUMP");
                 break;
         }
+
+        action = State.THINKING;
     }
 
     IEnumerator DoPatternAction() {
         // Randomize pattern interval time
+        isPerforming = true;
+
         float intervalTime = patternIntervalTime;
         float random = Random.Range(0f, 1f);
-        if(random < 0.125f) {
-            intervalTime/=patternIntervalTimeModifier;
-        }
-        else if(random > 0.875f) {
+        if(random < 0.25f || random > 0.75f) {
             intervalTime*=patternIntervalTimeModifier;
         }
+
         yield return new WaitForSeconds(intervalTime);
+
         PerformPatternAction();
-        readyForAction = false; //
+        isPerforming = false;
     }
 }

@@ -312,10 +312,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1616694041}
-    - target: {fileID: 5774404499878993142, guid: 55e111e645f87e2b6a425646ca58de07, type: 3}
-      propertyPath: soapPatterns.Array.data[0].iteration
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
