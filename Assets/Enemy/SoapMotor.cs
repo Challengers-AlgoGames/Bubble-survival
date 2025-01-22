@@ -11,7 +11,6 @@ public class SoapMotor : MonoBehaviour
     }
 
     public void DoCircleBubbleFormationMove() {
-        // StartCoroutine(PerformCircleBubbleFormationMove());
         int bubbles = 12;
         float radius = 1f;
         CircleFormation(bubbles, radius);
