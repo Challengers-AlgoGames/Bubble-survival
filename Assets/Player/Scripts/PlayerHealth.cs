@@ -7,8 +7,6 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
-    private bool isHit = false;
-
     public delegate void HealthCHanged(int currentHealth, int maxHealth);
     public event HealthCHanged OnHealthChanged;
 

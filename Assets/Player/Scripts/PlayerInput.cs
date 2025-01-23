@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputHandler : MonoBehaviour
+
+public class PlayerInput : MonoBehaviour
 {
     public InputActionReference fire;
 
