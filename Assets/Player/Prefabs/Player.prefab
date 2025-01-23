@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1376130687626077279}
   - component: {fileID: 8763485123915673460}
   - component: {fileID: 6438314854564999127}
-  - component: {fileID: 3088177026977964228}
   - component: {fileID: 8802576223352850922}
   - component: {fileID: 1499913772807773439}
   - component: {fileID: 1672034331181807880}
-  - component: {fileID: 1767221029916824162}
+  - component: {fileID: 8482007735385463768}
+  - component: {fileID: 3526165214674574044}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -123,21 +123,6 @@ MonoBehaviour:
   m_DefaultActionMap: Move
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3088177026977964228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6452545082924276953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3471c6b3c55ef8448fbb204bf4af419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  deceleration: 5
-  move: {fileID: 4302468295831392351, guid: cf5b633c935aad446b5f308541ad20cd, type: 3}
 --- !u!50 &8802576223352850922
 Rigidbody2D:
   serializedVersion: 5
@@ -223,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1960d762f2cf6074a8af9152c3093c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
---- !u!114 &1767221029916824162
+  maxHealth: 100
+--- !u!114 &8482007735385463768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,7 +218,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6452545082924276953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa27f9985b3ad947818d7eedfae1fab, type: 3}
+  m_Script: {fileID: 11500000, guid: 01f7bed6540279f43ae0a8eed769a480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 6123220868522767328, guid: cf5b633c935aad446b5f308541ad20cd, type: 3}
+--- !u!114 &3526165214674574044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452545082924276953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e8274842e56304fad90f8f45df7fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  deceleration: 5
+  move: {fileID: 4302468295831392351, guid: cf5b633c935aad446b5f308541ad20cd, type: 3}
