@@ -16,10 +16,11 @@ public class SoapPattern : MonoBehaviour
     private State action = State.THINKING;
 
     [SerializeField] private GameObject target;
-    [SerializeField] private float patternIntervalTime = 5f;
-    [SerializeField] private float patternIntervalTimeModifier = 2f;
+    [SerializeField] private float decisionMakingTime = 2f;
+    [SerializeField] private float decisionMakingTimeModifier = 2f;
 
-    private bool isPerforming = false;
+    private bool isMakeDecision = false;
+    private bool isPerform = false;
 
     void Awake() {
         soapMotor = GetComponent<SoapMotor>();
@@ -29,18 +30,28 @@ public class SoapPattern : MonoBehaviour
     {
         switch(action) {
             case State.THINKING:
-                MakeDecision();
-                action = State.PERFORMING;
+                if (!isMakeDecision) {
+                    StartCoroutine(MakeDecision());
+                }
                 break;
             case State.PERFORMING:
-                if (!isPerforming) {
-                    StartCoroutine(DoPatternAction());
+                if(!isPerform) {
+                    DoPatternAction();
                 }
                 break;
         }
     }
 
-    void MakeDecision() {
+    IEnumerator MakeDecision() {
+        isMakeDecision = true;
+        // Time make descision
+        float thinkTime = decisionMakingTime;
+        float random = Random.Range(0f, 1f);
+        if(random < 0.25f || random > 0.75f) {
+            thinkTime*=decisionMakingTimeModifier;
+        }
+        yield return new WaitForSeconds(thinkTime);
+
         float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
         // BREATH pattern
         if(distanceToTarget <= 5f) {
@@ -58,9 +69,14 @@ public class SoapPattern : MonoBehaviour
         else if(distanceToTarget > 15f) {
             currentPattern = SoapPatternType.SLIDE;
         }
+
+        action = State.PERFORMING;
+        isMakeDecision = false;
     }
 
-    void PerformPatternAction() {
+    void DoPatternAction() {
+        isPerform = true;
+
         switch(currentPattern) {
             case SoapPatternType.BREATH:
                 soapMotor.Breath();
@@ -70,25 +86,11 @@ public class SoapPattern : MonoBehaviour
             case SoapPatternType.SLIDE:
                 break;
             case SoapPatternType.JUMP:
+                soapMotor.JumpTo(target.transform.position);
                 break;
         }
 
         action = State.THINKING;
-    }
-
-    IEnumerator DoPatternAction() {
-        // Randomize pattern interval time
-        isPerforming = true;
-
-        float intervalTime = patternIntervalTime;
-        float random = Random.Range(0f, 1f);
-        if(random < 0.25f || random > 0.75f) {
-            intervalTime*=patternIntervalTimeModifier;
-        }
-
-        yield return new WaitForSeconds(intervalTime);
-
-        PerformPatternAction();
-        isPerforming = false;
+        isPerform =false;
     }
 }
