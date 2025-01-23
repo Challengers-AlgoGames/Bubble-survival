@@ -25,6 +25,6 @@ public class SoapMotor : MonoBehaviour
 
     public void JumpTo(Vector3 targetPosition) {
         jupmTargetPosition = targetPosition;
-        Thread.Sleep(2000);
+        //Thread.Sleep(2000);
     }
 }
