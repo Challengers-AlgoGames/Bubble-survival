@@ -6,9 +6,5 @@ public class BubbleDestroyer : MonoBehaviour
         if(collider.CompareTag("Bubble")) {
             Destroy(collider.gameObject);
         }
-
-        if(collider.CompareTag("Player")) {
-            Debug.Log(collider.transform.position);
-        }
     }
 }
