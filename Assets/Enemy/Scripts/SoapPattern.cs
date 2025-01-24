@@ -8,12 +8,12 @@ public class SoapPattern : MonoBehaviour
         BREATH, SPIN, SLIDE, JUMP
     }
     public enum State {
-        PERFORMING, THINKING
+        PERFORMING, THINKING, IDLE
     }
 
     private SoapMotor soapMotor;
     private SoapPatternType currentPattern;
-    private State action = State.THINKING;
+    private State action = State.IDLE;
 
     [SerializeField] private GameObject target;
     [SerializeField] private float decisionMakingTime = 1.0f;
@@ -21,8 +21,10 @@ public class SoapPattern : MonoBehaviour
     private bool isMakeDecision = false;
     private bool isPerform = false;
 
-    void Awake() {
+    void Start() {
+        Debug.Log("SoapPattern Start");
         soapMotor = GetComponent<SoapMotor>();
+        action = State.THINKING;
     }
 
     void FixedUpdate()
@@ -37,6 +39,8 @@ public class SoapPattern : MonoBehaviour
                 if(!isPerform) {
                     DoPatternAction();
                 }
+                break;
+            case State.IDLE:
                 break;
         }
     }

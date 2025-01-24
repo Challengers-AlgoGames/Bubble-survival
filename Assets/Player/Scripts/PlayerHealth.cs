@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     [Header("Header Setting")]
     public int maxHeart = 3;
     private int currentHeart;
@@ -45,5 +46,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
+        OnPlayerDeath?.Invoke();
     }
 }
