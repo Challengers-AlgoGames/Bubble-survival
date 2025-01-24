@@ -25,6 +25,14 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(10);
         }
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Bubble"))
+        {
+            Debug.Log("Collision");
+            TakeDamage(10);
+        }
+    }
 
     private void TakeDamage(int damage)
     {
