@@ -16,8 +16,7 @@ public class SoapPattern : MonoBehaviour
     private State action = State.THINKING;
 
     [SerializeField] private GameObject target;
-    [SerializeField] private float decisionMakingTime = 2f;
-    [SerializeField] private float decisionMakingTimeModifier = 2f;
+    [SerializeField] private float decisionMakingTime = 1.0f;
 
     private bool isMakeDecision = false;
     private bool isPerform = false;
@@ -45,28 +44,31 @@ public class SoapPattern : MonoBehaviour
     IEnumerator MakeDecision() {
         isMakeDecision = true;
         // Time make descision
-        float thinkTime = decisionMakingTime;
-        float random = Random.Range(0f, 1f);
-        if(random < 0.25f || random > 0.75f) {
-            thinkTime*=decisionMakingTimeModifier;
-        }
-        yield return new WaitForSeconds(thinkTime);
-
         float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+       
+        Debug.Log("Thinking...");
+
+        yield return new WaitForSeconds(decisionMakingTime);
+
+        
         // BREATH pattern
         if(distanceToTarget <= 5f) {
+            Debug.Log("Decide do BREATH");
             currentPattern = SoapPatternType.BREATH;
         }
         // SPIN pattern
         else if(distanceToTarget <= 10f && distanceToTarget > 5f) {
+            Debug.Log("Decide do BREATH");
             currentPattern = SoapPatternType.SPIN;
         }
         // JUMP pattern
         else if (distanceToTarget <= 15f && distanceToTarget > 10f) {
+            Debug.Log("Decide do BREATH");
             currentPattern = SoapPatternType.JUMP;
         }
         // SLIDE pattern
         else if(distanceToTarget > 15f) {
+            Debug.Log("Decide do SLIDE");
             currentPattern = SoapPatternType.SLIDE;
         }
 
@@ -76,6 +78,8 @@ public class SoapPattern : MonoBehaviour
 
     void DoPatternAction() {
         isPerform = true;
+
+        Debug.Log("Performing...");
 
         switch(currentPattern) {
             case SoapPatternType.BREATH:
@@ -92,5 +96,6 @@ public class SoapPattern : MonoBehaviour
 
         action = State.THINKING;
         isPerform =false;
+        Debug.Log("Action done");
     }
 }
