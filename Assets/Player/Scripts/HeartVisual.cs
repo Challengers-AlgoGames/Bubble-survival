@@ -31,7 +31,7 @@ public class HeartVisual : MonoBehaviour
 
     private void AddHeart(int index, int fragments)
     {
-        float spacing = 25f; // Espacement entre les cœurs
+        float spacing = 40f; // Espacement entre les cœurs
         float startX = -Screen.width / 3 + spacing;
         float startY = Screen.height + 50;
 
@@ -49,7 +49,7 @@ public class HeartVisual : MonoBehaviour
 
         RectTransform rectTransform = heartGameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = position;
-        rectTransform.sizeDelta = new Vector2(30, 30);
+        rectTransform.sizeDelta = new Vector2(70, 70);
 
         Image heartImage = heartGameObject.GetComponent<Image>();
         heartImage.sprite = fullHeartSprite;
