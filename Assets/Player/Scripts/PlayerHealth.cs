@@ -23,20 +23,6 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(currentHeart, maxHeart);
 
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F)) // Utilisation de KeyCode pour plus de clarté
-        {
-            if (heartVisual != null)
-            {
-                heartVisual.Heal(1);
-            }
-            else
-            {
-                Debug.LogError("heartVisual is not initialized!");
-            }
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
