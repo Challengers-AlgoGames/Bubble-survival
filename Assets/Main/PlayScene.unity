@@ -847,6 +847,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5155220915472033542, guid: 55e111e645f87e2b6a425646ca58de07, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8bdc227169c718444be2aede15a1b6e7, type: 2}
     - target: {fileID: 5548437929759320697, guid: 55e111e645f87e2b6a425646ca58de07, type: 3}
       propertyPath: 'TriggerModule.primitives.Array.data[0]'
       value: 
@@ -1057,7 +1061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 731.5132, y: -256.0296}
+  m_AnchoredPosition: {x: 826.1808, y: -254}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773369007
