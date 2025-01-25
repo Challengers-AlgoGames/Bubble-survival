@@ -8,11 +8,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
 
     void Awake() {
-        Game.OnGameOver += DisplayGameOver;
+        GameManager.OnGameOver += DisplayGameOver;
     }
 
     void OnDestroy() {
-        Game.OnGameOver -= DisplayGameOver;
+        GameManager.OnGameOver -= DisplayGameOver;
     }
 
     void Start() {
@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public void RestartGame() {
         OnStartGame?.Invoke();
         gameOverUI.SetActive(false);
+        SceneController.ReloadScene();
     }
 
     void DisplayGameOver(){
