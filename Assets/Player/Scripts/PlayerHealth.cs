@@ -1,20 +1,16 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     [Header("Header Setting")]
     public int maxHeart = 3;
     private int currentHeart;
 
-<<<<<<< Updated upstream
-    public delegate void HealthCHanged(int currentHeart, int maxHeart);
-    public event HealthCHanged OnHealthChanged;
-=======
-
->>>>>>> Stashed changes
     private HeartVisual heartVisual;
+
     private void Awake()
     {
         heartVisual = FindAnyObjectByType<HeartVisual>();
@@ -23,17 +19,10 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHeart = maxHeart;
-        Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
-        OnHealthChanged?.Invoke(currentHeart, maxHeart);
-
     }
+
     private void Update()
     {
-<<<<<<< Updated upstream
-        if (Input.GetKeyDown(KeyCode.F)) // Utilisation de KeyCode pour plus de clarté
-        {
-            if (heartVisual != null)
-=======
         Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
     }
 
@@ -43,14 +32,10 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHeart--;
             heartVisual.TakeDamage(1);
+
             if (currentHeart == 0)
->>>>>>> Stashed changes
             {
-                heartVisual.Heal(1);
-            }
-            else
-            {
-                Debug.LogError("heartVisual is not initialized!");
+                Die();
             }
         }
     }
@@ -60,8 +45,8 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Bubble"))
         {
             Debug.Log("Collision");
-            heartVisual.TakeDamage(1);
             Destroy(collision.gameObject);
+            TakeDamage();
         }
     }
     private void OnParticleCollision(GameObject other)
@@ -69,12 +54,13 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Bubble"))
         {
             Debug.Log("Collision");
-            heartVisual.TakeDamage(1);
+            TakeDamage();
         }
     }
 
     private void Die()
     {
         Debug.Log("Player has died");
+        OnPlayerDeath?.Invoke();
     }
 }

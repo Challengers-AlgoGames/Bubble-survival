@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AreaTrigger : MonoBehaviour
+public class BubbleDestroyer : MonoBehaviour
 {
     void OnTriggerExit2D(Collider2D collider) {
         if(collider.CompareTag("Bubble")) {

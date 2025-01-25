@@ -14,9 +14,9 @@ public class HeartVisual : MonoBehaviour
         heartImageList = new List<HeartImage>();
 
         // Initialiser avec 3 cœurs pleins
-        AddHeart(new Vector2(100, 350), 0);
-        AddHeart(new Vector2(120, 350), 0);
-        AddHeart(new Vector2(140, 350), 0);
+        AddHeart(1, 0);
+        AddHeart(2, 0);
+        AddHeart(3, 0);
     }
 
     [System.Obsolete]
@@ -28,11 +28,18 @@ public class HeartVisual : MonoBehaviour
         }
     }
 
-    private void AddHeart(Vector2 position, int fragments)
+
+    private void AddHeart(int index, int fragments)
     {
+        float spacing = 40f; // Espacement entre les cœurs
+        float startX = -Screen.width / 3 + spacing;
+        float startY = Screen.height + 50;
+
+        Vector2 position = new Vector2(startX + index * spacing, startY);
+
         HeartImage heart = CreateHeartImage(position);
         heartImageList.Add(heart);
-        heart.SetHeart(fragments); // Initialiser l'état du cœur
+        heart.SetHeart(fragments); // Initialise le cœur avec le niveau de fragment donné
     }
 
     private HeartImage CreateHeartImage(Vector2 position)
@@ -42,7 +49,7 @@ public class HeartVisual : MonoBehaviour
 
         RectTransform rectTransform = heartGameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = position;
-        rectTransform.sizeDelta = new Vector2(20, 20);
+        rectTransform.sizeDelta = new Vector2(70, 70);
 
         Image heartImage = heartGameObject.GetComponent<Image>();
         heartImage.sprite = fullHeartSprite;
@@ -53,33 +60,27 @@ public class HeartVisual : MonoBehaviour
     // Méthode pour gérer les dégâts
     public void TakeDamage(int damageAmount)
     {
-        // Parcourir les cœurs pour appliquer les dégâts
-        for (int i = 0; i < damageAmount; i++)
+        int damageApplied = 0;
+        for (int i = heartImageList.Count - 1; i >= 0; i--)
         {
-            // Trouver le premier cœur plein et le vider
-            for (int j = heartImageList.Count - 1; j >= 0; j--)
+            if (damageApplied >= damageAmount) break;
+            if (heartImageList[i].IsFull())
             {
-                if (heartImageList[j].IsFull())
-                {
-                    heartImageList[j].SetHeart(1); // 1 = Cœur vide
-                    break;
-                }
+                heartImageList[i].SetHeart(1); // 1 = Cœur vide
+                damageApplied++;
             }
         }
     }
     public void Heal(int healAmount)
     {
-        // Parcourir les cœurs pour appliquer les dégâts
-        for (int i = 0; i < healAmount; i++)
+        int healApplied = 0;
+        for (int i = 0; i < heartImageList.Count; i++)
         {
-            // Trouver le premier cœur plein et le vider
-            for (int j = 0; j < heartImageList.Count; j++)
+            if (healApplied >= healAmount) break;
+            if (!heartImageList[i].IsFull())
             {
-                if (!heartImageList[j].IsFull())
-                {
-                    heartImageList[j].SetHeart(0); // 0 = Cœur Full
-                    break;
-                }
+                heartImageList[i].SetHeart(0); // 0 = Cœur plein
+                healApplied++;
             }
         }
     }
