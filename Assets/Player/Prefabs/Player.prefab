@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1960d762f2cf6074a8af9152c3093c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHeart: 3
 --- !u!114 &2572370128202081053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,18 +237,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 6123220868522767328, guid: cf5b633c935aad446b5f308541ad20cd, type: 3}
---- !u!114 &3526165214674574044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6452545082924276953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e8274842e56304fad90f8f45df7fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  deceleration: 5
-  move: {fileID: 4302468295831392351, guid: cf5b633c935aad446b5f308541ad20cd, type: 3}

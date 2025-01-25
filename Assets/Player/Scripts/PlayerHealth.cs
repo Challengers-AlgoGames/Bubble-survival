@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     [Header("Header Setting")]
     public int maxHeart = 3;
     private int currentHeart;
 
-    public delegate void HealthCHanged(int currentHeart, int maxHeart);
-    public event HealthCHanged OnHealthChanged;
     private HeartVisual heartVisual;
+
     private void Awake()
     {
         heartVisual = FindAnyObjectByType<HeartVisual>();
@@ -19,9 +19,24 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHeart = maxHeart;
-        Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
-        OnHealthChanged?.Invoke(currentHeart, maxHeart);
+    }
 
+    private void Update()
+    {
+        Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
+    }
+
+    private void TakeDamage() {
+        if (currentHeart > 0)
+        {
+            currentHeart--;
+            heartVisual.TakeDamage(1);
+
+            if(currentHeart == 0)
+            {
+                Die();
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,8 +44,8 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Bubble"))
         {
             Debug.Log("Collision");
-            heartVisual.TakeDamage(1);
             Destroy(collision.gameObject);
+            TakeDamage();
         }
     }
     private void OnParticleCollision(GameObject other)
@@ -38,12 +53,13 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Bubble"))
         {
             Debug.Log("Collision");
-            heartVisual.TakeDamage(1);
+            TakeDamage();
         }
     }
 
     private void Die()
     {
         Debug.Log("Player has died");
+        OnPlayerDeath?.Invoke();
     }
 }
