@@ -71,7 +71,7 @@ public class SoapMotor : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, 1), 1080f * Time.fixedDeltaTime / spinTime);
         if(impactPoint == Vector3.zero)
         {
-            float speed = 3f;
+            float speed = 5f;
             transform.position = Vector3.MoveTowards(transform.position, spinTarget, speed * Time.fixedDeltaTime);
             if (Vector3.Distance(transform.position, spinTarget) < 0.1f)
             {

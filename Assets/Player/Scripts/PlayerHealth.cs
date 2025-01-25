@@ -21,17 +21,12 @@ public class PlayerHealth : MonoBehaviour
         currentHeart = maxHeart;
     }
 
-    private void Update()
-    {
-        Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
-    }
-
     private void TakeDamage()
     {
         if (currentHeart > 0)
         {
             currentHeart--;
-            heartVisual.TakeDamage(1);
+            heartVisual.ReduceHearts();
 
             if (currentHeart == 0)
             {
