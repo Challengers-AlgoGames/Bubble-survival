@@ -7,31 +7,28 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject soap;
-    [SerializeField] GameObject text;
 
     void Awake()
     {
         UIManager.OnStartGame += Play;
         PlayerHealth.OnPlayerDeath += Defeat;
-        TimerManager.OnTimerOut += HandleTimerOut;
+        TimerManager.OnTimerOut += Win;
 
         player.SetActive(false);
         soap.SetActive(false);
-        text.SetActive(false);
     }
 
     void OnDestroy()
     {
         PlayerHealth.OnPlayerDeath -= Defeat;
         UIManager.OnStartGame -= Play;
-        TimerManager.OnTimerOut -= HandleTimerOut;
+        TimerManager.OnTimerOut -= Win;
     }
 
     void Play()
     {
         player.SetActive(true);
         soap.SetActive(true);
-        text.SetActive(true);
     }
 
     void GameOver(bool isWin)
@@ -39,7 +36,6 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke(isWin);
         player.SetActive(false);
         soap.SetActive(false);
-        text.SetActive(false);
     }
 
     void Defeat()
@@ -50,11 +46,5 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         GameOver(true);
-    }
-
-    void HandleTimerOut()
-    {
-        Debug.Log("Le temps est écoulé, défaite !");
-        Win();
     }
 }
