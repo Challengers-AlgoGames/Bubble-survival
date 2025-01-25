@@ -26,13 +26,14 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
     }
 
-    private void TakeDamage() {
+    private void TakeDamage()
+    {
         if (currentHeart > 0)
         {
             currentHeart--;
             heartVisual.TakeDamage(1);
 
-            if(currentHeart == 0)
+            if (currentHeart == 0)
             {
                 Die();
             }
