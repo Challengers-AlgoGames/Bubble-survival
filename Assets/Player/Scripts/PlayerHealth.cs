@@ -8,8 +8,12 @@ public class PlayerHealth : MonoBehaviour
     public int maxHeart = 3;
     private int currentHeart;
 
+<<<<<<< Updated upstream
     public delegate void HealthCHanged(int currentHeart, int maxHeart);
     public event HealthCHanged OnHealthChanged;
+=======
+
+>>>>>>> Stashed changes
     private HeartVisual heartVisual;
     private void Awake()
     {
@@ -25,9 +29,22 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.F)) // Utilisation de KeyCode pour plus de clarté
         {
             if (heartVisual != null)
+=======
+        Debug.Log($"currentHeart : {currentHeart} / {maxHeart}");
+    }
+
+    private void TakeDamage()
+    {
+        if (currentHeart > 0)
+        {
+            currentHeart--;
+            heartVisual.TakeDamage(1);
+            if (currentHeart == 0)
+>>>>>>> Stashed changes
             {
                 heartVisual.Heal(1);
             }
