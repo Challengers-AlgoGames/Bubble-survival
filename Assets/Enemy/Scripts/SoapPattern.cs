@@ -65,7 +65,7 @@ public class SoapPattern : MonoBehaviour
             currentPattern = SoapPatternType.SPIN;
         }
         // JUMP pattern
-        else if (distanceToTarget > 10f) {
+        else if (distanceToTarget <= 15f && distanceToTarget > 10f) {
             Debug.Log("Decide do BREATH");
             currentPattern = SoapPatternType.JUMP;
         }
