@@ -84,7 +84,7 @@ public class SoapPattern : MonoBehaviour
                 soapMotor.Breath();
                 break;
             case SoapPatternType.SPIN:
-                soapMotor.Spin();
+                soapMotor.Spin(target.transform.position);
                 break;
             case SoapPatternType.SLIDE:
                 break;

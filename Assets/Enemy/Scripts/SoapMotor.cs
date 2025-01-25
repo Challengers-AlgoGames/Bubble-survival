@@ -10,6 +10,7 @@ public class SoapMotor : MonoBehaviour
     [SerializeField] float spinTime = 1.5f;
 
     private Vector3 impactPoint = Vector3.zero;
+    private Vector3 spinTarget = Vector3.zero;
     private Vector3 outOfSceen = new Vector3(0, 12, 0);
     private bool isOutIfSceen = false;
 
@@ -59,14 +60,26 @@ public class SoapMotor : MonoBehaviour
         }
     }
 
-    public void Spin() {
+    public void Spin(Vector3 targetPosition) {
         spin = true;
+        spinTarget = targetPosition;
         StartCoroutine(SpinFor(1.5f));
     }
 
     void PerformSpin() {
         // 360 * 3 -> 1080 -> 3 round
         transform.Rotate(new Vector3(0, 0, 1), 1080f * Time.fixedDeltaTime / spinTime);
+        if(impactPoint == Vector3.zero)
+        {
+            float speed = 3f;
+            transform.position = Vector3.MoveTowards(transform.position, spinTarget, speed * Time.fixedDeltaTime);
+            if (Vector3.Distance(transform.position, spinTarget) < 0.1f)
+            {
+                spinTarget = Vector3.zero;
+                spin = false;
+            }
+        }
+        
     }
 
     IEnumerator SpinFor(float time) {
