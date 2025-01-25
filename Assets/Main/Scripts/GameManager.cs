@@ -1,8 +1,9 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static event System.Action OnGameOver;
+    public static event System.Action<bool> OnGameOver;
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject soap;
@@ -25,13 +26,17 @@ public class GameManager : MonoBehaviour
         soap.SetActive(true);
     }
 
-    void GameOver() {
-        OnGameOver?.Invoke();
+    void GameOver(bool isWin) {
+        OnGameOver?.Invoke(isWin);
         player.SetActive(false);
         soap.SetActive(false);
     }
 
     void Defeat() {
-        GameOver();
+        GameOver(false);
+    }
+
+    void Win () {
+        GameOver(true);
     }
 }
