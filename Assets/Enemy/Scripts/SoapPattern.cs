@@ -54,7 +54,6 @@ public class SoapPattern : MonoBehaviour
 
         yield return new WaitForSeconds(decisionMakingTime);
 
-        
         // BREATH pattern
         if(distanceToTarget <= 5f) {
             Debug.Log("Decide do BREATH");
@@ -69,11 +68,6 @@ public class SoapPattern : MonoBehaviour
         else if (distanceToTarget <= 15f && distanceToTarget > 10f) {
             Debug.Log("Decide do BREATH");
             currentPattern = SoapPatternType.JUMP;
-        }
-        // SLIDE pattern
-        else if(distanceToTarget > 15f) {
-            Debug.Log("Decide do SLIDE");
-            currentPattern = SoapPatternType.SLIDE;
         }
 
         action = State.PERFORMING;
