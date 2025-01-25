@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject startUI;
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] Text gameOverMessageContener;
 
     void Awake() {
         GameManager.OnGameOver += DisplayGameOver;
@@ -31,8 +33,25 @@ public class UIManager : MonoBehaviour
         SceneController.ReloadScene();
     }
 
-    void DisplayGameOver(){
+    void DisplayGameOver(bool isWin){
         Debug.Log("Game Over");
         gameOverUI.SetActive(true);
+        if(isWin) {
+            DispayGameOverWinUI();
+        } else {
+            DispayGameOverLoseUI();
+        }
+    }
+
+    void DispayGameOverWinUI() {
+        gameOverMessageContener.color = Color.green;
+        gameOverMessageContener.text = "You Win";
+        Debug.Log("You Win");
+    }
+
+    void DispayGameOverLoseUI() {
+        gameOverMessageContener.color = Color.red;
+        gameOverMessageContener.text = "You Lose";
+        Debug.Log("You Lose");
     }
 }
