@@ -21,6 +21,9 @@ public class TimerManager : MonoBehaviour
         UIManager.OnStartGame -= StartTimer;
     }
 
+    private void Start() {
+        UpdateTimeDisplay(timerDuration);
+    }
 
     private void Update()
     {
